@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 @export var bullet: PackedScene
-@export var bullet_speed = 1000
+@export var bullet_speed = 1500
+@export var offset_scale = 140
+@export var offset_rot = 270
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -33,13 +35,13 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO 
 		
 	move_and_slide()
-	look_at(get_global_mouse_position())
+	look_at((get_global_mouse_position() - anim.global_position).rotated(deg_to_rad(offset_rot)) + anim.global_position)
 	
 func fire():
 	var bullet_instance = bullet.instantiate()
-	bullet_instance.global_position = global_position
-	bullet_instance.rotation = rotation
-	bullet_instance.apply_impulse(Vector2(bullet_speed, 0).rotated(rotation))
+	bullet_instance.global_position = anim.global_position + offset_scale * Vector2(cos(rotation + deg_to_rad(offset_rot + 180)), sin(rotation + deg_to_rad(offset_rot + 180)))
+	bullet_instance.rotation = rotation + deg_to_rad(offset_rot)
+	bullet_instance.apply_impulse(Vector2(bullet_speed, 0).rotated(rotation + deg_to_rad(offset_rot + 180)))
 	get_tree().get_root().add_child(bullet_instance)
 	
 func kill():
@@ -53,5 +55,3 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_Area2D_body_entered(body):
 	pass
-	
-	
