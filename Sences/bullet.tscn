@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhxq4w6n0sj2s"]
+
+[ext_resource type="Texture2D" uid="uid://bifxurussxaye" path="res://Spirtes/Player/bullet.png" id="1_yvxky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnmmp"]
+size = Vector2(24, 12)
+
+[node name="bullet" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_vnmmp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_yvxky")

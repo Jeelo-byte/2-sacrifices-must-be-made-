@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://emts3i2ctj6k"]
+
+[ext_resource type="Script" uid="uid://dnbpabuj0i8vq" path="res://Scripts/Player/player.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://ckbpbhjmrecvw" path="res://Spirtes/Player/github-octopuss.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dhxq4w6n0sj2s" path="res://Sences/bullet.tscn" id="2_ri208"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig7tw"]
+radius = 20.45
+height = 50.67
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1ljd"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcost"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxphk"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(0, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptnbv"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(50, 50, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0jvq7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1ljd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcost")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxphk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptnbv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xm2m"]
+radius = 27.5
+
+[node name="world" type="Node2D"]
+scale = Vector2(5, 5)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(113.00001, 61.799995)
+up_direction = Vector2(0.99999446, -0.003333315)
+script = ExtResource("1_0xm2m")
+bullet = ExtResource("2_ri208")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_ig7tw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(-0.20001219, 1.0000062)
+sprite_frames = SubResource("SpriteFrames_0jvq7")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.58340704
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource("CircleShape2D_0xm2m")
