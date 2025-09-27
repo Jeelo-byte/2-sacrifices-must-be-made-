@@ -9,8 +9,6 @@ extends CharacterBody2D
 
 var movespeed = 500
 
-# --- NEW ---
-# Moved the animation logic here from main.gd.
 func _ready():
 	anim.play("idle")
 
@@ -32,7 +30,7 @@ func _physics_process(delta):
 	if direction != Vector2.ZERO:
 		velocity = direction.normalized() * movespeed
 	else:
-		velocity = Vector2.ZERO 
+		velocity = Vector2.ZERO
 		
 	move_and_slide()
 	look_at((get_global_mouse_position() - anim.global_position).rotated(deg_to_rad(offset_rot)) + anim.global_position)
