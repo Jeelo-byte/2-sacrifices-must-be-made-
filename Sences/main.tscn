@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://emts3i2ctj6k"]
+[gd_scene load_steps=12 format=3 uid="uid://emts3i2ctj6k"]
 
 [ext_resource type="Script" uid="uid://dnbpabuj0i8vq" path="res://Scripts/Player/player.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://ckbpbhjmrecvw" path="res://Spirtes/Player/github-octopuss.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dhxq4w6n0sj2s" path="res://Sences/bullet.tscn" id="2_ri208"]
+[ext_resource type="PackedScene" uid="uid://cbodbww3t36n6" path="res://Sences/enemy.tscn" id="4_ipa3v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig7tw"]
 radius = 20.45
@@ -70,3 +71,6 @@ frame_progress = 0.58340704
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource("CircleShape2D_0xm2m")
+
+[node name="Enemy" parent="." instance=ExtResource("4_ipa3v")]
+position = Vector2(30.400002, 56.199997)

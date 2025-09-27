@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbodbww3t36n6"]
+
+[ext_resource type="Script" uid="uid://bqufx1vsy3yvu" path="res://Sences/enemy.gd" id="1_40gjv"]
+[ext_resource type="Texture2D" uid="uid://bgasocjkdrvx0" path="res://Spirtes/Player/enemy.png" id="2_88ngu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pjkp"]
+size = Vector2(22.2, 28.9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y7xl"]
+atlas = ExtResource("2_88ngu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ri208"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y7xl")
+}],
+"loop": true,
+"name": &"enemy",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y7xl"]
+size = Vector2(25.400002, 32.200005)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_40gjv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.95000076)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_5pjkp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.6000023, 0.60000134)
+sprite_frames = SubResource("SpriteFrames_ri208")
+animation = &"enemy"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.29999924, -1.0999985)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_0y7xl")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
