@@ -4,17 +4,15 @@ var player
 
 func _ready():
 	set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
-	player = get_tree().get_first_node_in_group("player")
-	if player:
-		position = Vector2(875, 20) + player.global_position - get_viewport().size / 2
-		
-		var font = load("res://Fonts/PrStart.ttf")
-		if font:
-			add_theme_font_override("font", font)
-			add_theme_font_size_override("font_size", 24)
-		
-		add_theme_color_override("font_color", Color.WHITE)
-		call_deferred("setup")
+	position = Vector2(875, 20)
+	
+	var font = load("res://Fonts/PrStart.ttf")
+	if font:
+		add_theme_font_override("font", font)
+		add_theme_font_size_override("font_size", 24)
+	
+	add_theme_color_override("font_color", Color.WHITE)
+	call_deferred("setup")
 
 func setup():
 	player = get_tree().get_first_node_in_group("player")

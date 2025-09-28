@@ -12,13 +12,13 @@ var game_over_shown: bool = false
 
 func _ready():
 	spawn_enemies()
-	var screen = $Player/PlayerAnim/PlayerCam/UI/GameOverScreen
+	var screen = $UI/GameOverScreen
 	screen.visible = false
 	for child_name in ["Background", "GameOverLabel", "StatsLabel", "RestartButton", "MainMenuButton"]:
 		if screen.has_node(child_name):
 			screen.get_node(child_name).modulate.a = 0.0
-	$Player/PlayerAnim/PlayerCam/UI/GameOverScreen/RestartButton.pressed.connect(_on_restart_button_pressed)
-	$Player/PlayerAnim/PlayerCam/UI/GameOverScreen/MainMenuButton.pressed.connect(_on_main_menu_button_pressed)
+	$UI/GameOverScreen/RestartButton.pressed.connect(_on_restart_button_pressed)
+	$UI/GameOverScreen/MainMenuButton.pressed.connect(_on_main_menu_button_pressed)
 
 func _process(delta):
 	check_wave_complete()
@@ -59,12 +59,7 @@ func check_player_dead():
 		show_game_over()
 
 func show_game_over():
-	var screen = $Player/PlayerAnim/PlayerCam/UI/GameOverScreen
-
-	# Center the screen on the player
-	var player = $Player
-	screen.position = player.global_position
-
+	var screen = $UI/GameOverScreen
 	screen.visible = true
 
 	var tween = create_tween()
