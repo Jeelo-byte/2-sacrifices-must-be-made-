@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var enemy_scene: PackedScene
-@export var enemy_count: int = 4
+@export var enemy_count: int = 5
 @export var enemy_speed: int = 200
 @export var spawn_area: Rect2 = Rect2(-512, -384, 1024, 768)
 
@@ -19,6 +19,8 @@ func _ready():
 			screen.get_node(child_name).modulate.a = 0.0
 	$Player/PlayerAnim/PlayerCam/UI/GameOverScreen/RestartButton.pressed.connect(_on_restart_button_pressed)
 	$Player/PlayerAnim/PlayerCam/UI/GameOverScreen/MainMenuButton.pressed.connect(_on_main_menu_button_pressed)
+	if has_node("Enemy"):
+		get_node("Enemy").queue_free()
 
 func _process(delta):
 	check_wave_complete()

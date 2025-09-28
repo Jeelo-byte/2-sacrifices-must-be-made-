@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://emts3i2ctj6k"]
 
-[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dnbpabuj0i8vq" path="res://Scripts/Player/player.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dswpc3013cm7v" path="res://Scripts/Player/main.gd" id="1_0y7xl"]
 [ext_resource type="Texture2D" uid="uid://ckbpbhjmrecvw" path="res://Spirtes/Player/github-octopuss.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dhxq4w6n0sj2s" path="res://Sences/bullet.tscn" id="2_ri208"]
@@ -82,6 +82,7 @@ enemy_scene = ExtResource("4_ipa3v")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(113.00001, 61.799995)
+scale = Vector2(0.55, 0.55)
 up_direction = Vector2(0.99999446, -0.003333315)
 script = ExtResource("1_0xm2m")
 bullet = ExtResource("2_ri208")
@@ -132,12 +133,15 @@ script = ExtResource("8_7pouu")
 modulate = Color(1, 1, 1, 0)
 z_index = 6
 layout_mode = 0
-offset_right = 2880.0
-offset_bottom = 411.0
+offset_left = -876.0
+offset_top = -113.0
+offset_right = 2004.0
+offset_bottom = 176.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("9_nkrox")
 theme_override_font_sizes/font_size = 100
 text = "GAME OVER!"
+horizontal_alignment = 1
 
 [node name="Background" type="ColorRect" parent="Player/PlayerAnim/PlayerCam/UI/GameOverScreen"]
 layout_mode = 0
@@ -197,6 +201,7 @@ texture = SubResource("GradientTexture2D_xqqum")
 
 [node name="Enemy" parent="." instance=ExtResource("4_ipa3v")]
 position = Vector2(30.400002, 56.199997)
+scale = Vector2(0.3, 0.3)
 damage_amount = 10
 
 [node name="EnemyArea" type="Area2D" parent="Enemy"]

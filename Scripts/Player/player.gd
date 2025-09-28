@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var bullet_speed = 1500
 @export var offset_scale = 140
 @export var offset_rot = 270
-@export var max_health: int = 10
+@export var max_health: int = 100
 @export var damage_cooldown: float = 1.0
 
 @onready var anim: AnimatedSprite2D = $PlayerAnim
@@ -19,6 +19,7 @@ func _ready():
 	anim.play("idle")
 	current_health = max_health
 	call_deferred("emit_initial_health")
+	global_position = Vector2(0, 0)
 
 func emit_initial_health():
 	health_changed.emit(current_health, max_health)
