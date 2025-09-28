@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://emts3i2ctj6k"]
+[gd_scene load_steps=28 format=3 uid="uid://emts3i2ctj6k"]
 
 [ext_resource type="Script" uid="uid://dnbpabuj0i8vq" path="res://Scripts/Player/player.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dswpc3013cm7v" path="res://Scripts/Player/main.gd" id="1_0y7xl"]
@@ -10,9 +10,12 @@
 [ext_resource type="Script" uid="uid://bd0v8pvgf1gkn" path="res://Scripts/game_over_screen.gd" id="8_7pouu"]
 [ext_resource type="FontFile" uid="uid://ydxs74l3u4gd" path="res://Fonts/PrStart.ttf" id="9_nkrox"]
 [ext_resource type="Script" uid="uid://bm0w005mbyok0" path="res://Scripts/stats_label.gd" id="10_7pouu"]
+[ext_resource type="Script" uid="uid://bl8u8c5vyf1gu" path="res://Scripts/game_over_label.gd" id="10_h0t8e"]
 [ext_resource type="Script" uid="uid://dyku0oifysyk" path="res://Scripts/background.gd" id="10_ka1xc"]
 [ext_resource type="TileSet" uid="uid://lu8xgeg0ji50" path="res://Sences/dungeon/TileSets/Floors.tres" id="11_nkrox"]
+[ext_resource type="Script" uid="uid://c8vigcoyyh3nc" path="res://Scripts/restart_button.gd" id="12_vc23a"]
 [ext_resource type="Script" uid="uid://yf2ho2h0rjld" path="res://Scripts/polygon_2d.gd" id="12_xqqum"]
+[ext_resource type="Script" uid="uid://cf0chokh4ae1f" path="res://Scripts/main_menu_button.gd" id="13_ka1xc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig7tw"]
 radius = 20.45
@@ -134,52 +137,57 @@ script = ExtResource("8_7pouu")
 modulate = Color(1, 1, 1, 0)
 z_index = 6
 layout_mode = 0
-offset_left = -876.0
-offset_top = -113.0
-offset_right = 2004.0
-offset_bottom = 176.0
+offset_right = 2880.0
+offset_bottom = 289.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("9_nkrox")
 theme_override_font_sizes/font_size = 100
 text = "GAME OVER!"
 horizontal_alignment = 1
+script = ExtResource("10_h0t8e")
 
 [node name="Background" type="ColorRect" parent="Player/PlayerAnim/PlayerCam/UI/GameOverScreen"]
+z_index = 4
 layout_mode = 0
-offset_left = -876.0
-offset_top = -496.0
-offset_right = 2004.0
-offset_bottom = 1124.0
+offset_left = -2000.0
+offset_top = -2000.0
+offset_right = 3000.0
+offset_bottom = 3000.0
 color = Color(1, 0, 0, 0.39215687)
 script = ExtResource("10_ka1xc")
 
 [node name="RestartButton" type="Button" parent="Player/PlayerAnim/PlayerCam/UI/GameOverScreen"]
+z_index = 6
 layout_mode = 0
-offset_left = -470.0
-offset_top = 424.0
-offset_right = 1600.0
-offset_bottom = 627.0
+offset_left = 405.0
+offset_top = 1195.0
+offset_right = 2475.0
+offset_bottom = 1398.0
 theme_override_fonts/font = ExtResource("9_nkrox")
 theme_override_font_sizes/font_size = 72
 text = "RESTART"
+script = ExtResource("12_vc23a")
 
 [node name="MainMenuButton" type="Button" parent="Player/PlayerAnim/PlayerCam/UI/GameOverScreen"]
+z_index = 6
 layout_mode = 0
-offset_left = -470.0
-offset_top = 658.0
-offset_right = 1600.0
-offset_bottom = 861.0
+offset_left = 401.0
+offset_top = 932.0
+offset_right = 2471.0
+offset_bottom = 1135.0
 theme_override_fonts/font = ExtResource("9_nkrox")
 theme_override_font_sizes/font_size = 72
 text = "MAIN MENU"
+script = ExtResource("13_ka1xc")
 
 [node name="StatsLabel" type="Label" parent="Player/PlayerAnim/PlayerCam/UI/GameOverScreen"]
 modulate = Color(1, 1, 1, 0)
+z_index = 6
 layout_mode = 0
-offset_left = -876.0
-offset_top = 127.0
-offset_right = 2004.0
-offset_bottom = 296.0
+offset_left = 8.0
+offset_top = 652.0
+offset_right = 2888.0
+offset_bottom = 821.0
 theme_override_fonts/font = ExtResource("9_nkrox")
 theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1

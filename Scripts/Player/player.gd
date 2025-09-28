@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var bullet_speed = 1500
 @export var offset_scale = 140
 @export var offset_rot = 270
-@export var max_health: int = 100
+@export var max_health: int = 1
 @export var damage_cooldown: float = 1.0
 @onready var anim: AnimatedSprite2D = $PlayerAnim
 signal health_changed(current_health: int, max_health: int)
