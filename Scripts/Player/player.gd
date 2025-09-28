@@ -1,11 +1,10 @@
 extends CharacterBody2D
-
 @export var bullet: PackedScene
 @export var bullet_speed = 1500
 @export var offset_scale = 140
 @export var offset_rot = 270
 @export var max_health: int = 100
-@export var damage_cooldown: float = 1.0
+@export var damage_cooldown: float = 1.
 
 @onready var anim: AnimatedSprite2D = $PlayerAnim
 signal health_changed(current_health: int, max_health: int)
@@ -52,6 +51,11 @@ func fire():
 	bullet_instance.apply_impulse(Vector2(bullet_speed, 0).rotated(rotation + deg_to_rad(offset_rot + 180)))
 	get_tree().get_root().add_child(bullet_instance)
 
+func check_wave_complete():
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	if enemies.size() == 0:
+		var movespeed = ceil(1.4 * movespeed)
+
 func take_damage(damage_amount: int):
 	if not can_take_damage:
 		return
@@ -75,8 +79,8 @@ func create_damage_effect():
 	tween.tween_property(anim, "modulate", Color.WHITE, 0.1)
 
 func die():
-	get_tree().create_timer(1.5).timeout.connect(func(): get_tree().reload_current_scene())
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		take_damage(1)
+	var game_over_screen = get_node("../UI/GameOverScreen")
+	if game_over_screen:
+		game_over_screen.show_game_over()
+	else:
+		get_tree().reload_current_scene()

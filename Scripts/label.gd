@@ -1,8 +1,8 @@
 extends Label
-
 var player
 
 func _ready():
+	# Make sure we're in a CanvasLayer or at scene root level
 	set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
 	position = Vector2(20, 20)
 	

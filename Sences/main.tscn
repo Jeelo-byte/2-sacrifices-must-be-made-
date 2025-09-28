@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://emts3i2ctj6k"]
+[gd_scene load_steps=17 format=3 uid="uid://emts3i2ctj6k"]
 
 [ext_resource type="Script" uid="uid://dnbpabuj0i8vq" path="res://Scripts/Player/player.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dswpc3013cm7v" path="res://Scripts/Player/main.gd" id="1_0y7xl"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dhxq4w6n0sj2s" path="res://Sences/bullet.tscn" id="2_ri208"]
 [ext_resource type="PackedScene" uid="uid://cbodbww3t36n6" path="res://Sences/enemy.tscn" id="4_ipa3v"]
 [ext_resource type="Script" uid="uid://8ekh8vnqvft8" path="res://Scripts/label.gd" id="6_5pjkp"]
+[ext_resource type="Script" uid="uid://dxvfww423g1gx" path="res://Scripts/wave_label.gd" id="7_hxpnw"]
+[ext_resource type="Script" uid="uid://bd0v8pvgf1gkn" path="res://Scripts/game_over_screen.gd" id="8_7pouu"]
+[ext_resource type="FontFile" uid="uid://ydxs74l3u4gd" path="res://Fonts/PrStart.ttf" id="9_nkrox"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig7tw"]
 radius = 20.45
@@ -84,16 +87,55 @@ position = Vector2(-0.5, -0.79999924)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_0y7xl")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 0
+[node name="HPLabel" type="Label" parent="UI"]
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("6_5pjkp")
 
+[node name="WaveLabel" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("7_hxpnw")
+
+[node name="GameOverScreen" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_7pouu")
+
+[node name="Background" type="ColorRect" parent="UI/GameOverScreen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0, 0, 1)
+
+[node name="GameOverLabel" type="Label" parent="UI/GameOverScreen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("9_nkrox")
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER!"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="UI/GameOverScreen"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "RESTART"
+
+[node name="StatsLabel" type="Label" parent="UI/GameOverScreen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("9_nkrox")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
 [connection signal="body_entered" from="Enemy/EnemyArea" to="Enemy" method="_on_enemy_area_body_entered"]
+[connection signal="pressed" from="UI/GameOverScreen/RestartButton" to="." method="_on_restart_button_pressed"]
