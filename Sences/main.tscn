@@ -125,6 +125,7 @@ script = ExtResource("8_7pouu")
 
 [node name="GameOverLabel" type="Label" parent="UI/GameOverScreen"]
 modulate = Color(1, 1, 1, 0)
+z_index = 6
 layout_mode = 0
 offset_top = 192.0
 offset_right = 1152.0

@@ -5,7 +5,7 @@ func _ready():
 	var font = load("res://Fonts/PrStart.ttf")
 	if font:
 		add_theme_font_override("font", font)
-		add_theme_font_size_override("font_size", 24)
+		add_theme_font_size_override("font_size", 22)
 	
 	call_deferred("setup")
 
