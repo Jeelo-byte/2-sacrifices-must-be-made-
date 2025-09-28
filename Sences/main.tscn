@@ -71,6 +71,7 @@ autoplay = "idle"
 frame_progress = 0.58340704
 
 [node name="PlayerCam" type="Camera2D" parent="Player/PlayerAnim"]
+zoom = Vector2(0.4, 0.4)
 
 [node name="Enemy" parent="." instance=ExtResource("4_ipa3v")]
 position = Vector2(30.400002, 56.199997)
