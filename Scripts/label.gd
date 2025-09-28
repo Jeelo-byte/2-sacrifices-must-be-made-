@@ -2,20 +2,13 @@ extends Label
 var player
 
 func _ready():
-	# Make sure we're in a CanvasLayer or at scene root level
 	set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
-	position = Vector2(20, 20)
-	
-	var font = load("res://Fonts/PrStart.ttf")
-	if font:
-		add_theme_font_override("font", font)
-		add_theme_font_size_override("font_size", 24)
-	
-	call_deferred("setup")
+	call_deferred("setup_position_and_connect")
 
-func setup():
+func setup_position_and_connect():
 	player = get_tree().get_first_node_in_group("player")
 	if player:
+		position = Vector2(20, 20) + player.global_position
 		player.health_changed.connect(_on_health_changed)
 		text = "HP: " + str(player.current_health) + "/" + str(player.max_health)
 
