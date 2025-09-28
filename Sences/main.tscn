@@ -1,56 +1,49 @@
-[gd_scene load_steps=28 format=3 uid="uid://emts3i2ctj6k"]
+[gd_scene load_steps=27 format=3 uid="uid://emts3i2ctj6k"]
 
 [ext_resource type="Script" uid="uid://dnbpabuj0i8vq" path="res://Scripts/Player/player.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dswpc3013cm7v" path="res://Scripts/Player/main.gd" id="1_0y7xl"]
-[ext_resource type="Texture2D" uid="uid://ckbpbhjmrecvw" path="res://Spirtes/Player/github-octopuss.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dhxq4w6n0sj2s" path="res://Sences/bullet.tscn" id="2_ri208"]
 [ext_resource type="PackedScene" uid="uid://cbodbww3t36n6" path="res://Sences/enemy.tscn" id="4_ipa3v"]
+[ext_resource type="Texture2D" uid="uid://ch5eejeyjiuf0" path="res://Game Resources/GameJam/Hero.png" id="5_ka1xc"]
 [ext_resource type="Script" uid="uid://8ekh8vnqvft8" path="res://Scripts/label.gd" id="6_5pjkp"]
 [ext_resource type="Script" uid="uid://dxvfww423g1gx" path="res://Scripts/wave_label.gd" id="7_hxpnw"]
 [ext_resource type="Script" uid="uid://bd0v8pvgf1gkn" path="res://Scripts/game_over_screen.gd" id="8_7pouu"]
 [ext_resource type="FontFile" uid="uid://ydxs74l3u4gd" path="res://Fonts/PrStart.ttf" id="9_nkrox"]
 [ext_resource type="Script" uid="uid://bm0w005mbyok0" path="res://Scripts/stats_label.gd" id="10_7pouu"]
-[ext_resource type="Script" uid="uid://bl8u8c5vyf1gu" path="res://Scripts/game_over_label.gd" id="10_h0t8e"]
+[ext_resource type="Script" path="res://Scripts/game_over_label.gd" id="10_h0t8e"]
 [ext_resource type="Script" uid="uid://dyku0oifysyk" path="res://Scripts/background.gd" id="10_ka1xc"]
 [ext_resource type="TileSet" uid="uid://lu8xgeg0ji50" path="res://Sences/dungeon/TileSets/Floors.tres" id="11_nkrox"]
-[ext_resource type="Script" uid="uid://c8vigcoyyh3nc" path="res://Scripts/restart_button.gd" id="12_vc23a"]
+[ext_resource type="Script" path="res://Scripts/restart_button.gd" id="12_vc23a"]
 [ext_resource type="Script" uid="uid://yf2ho2h0rjld" path="res://Scripts/polygon_2d.gd" id="12_xqqum"]
-[ext_resource type="Script" uid="uid://cf0chokh4ae1f" path="res://Scripts/main_menu_button.gd" id="13_ka1xc"]
+[ext_resource type="Script" path="res://Scripts/main_menu_button.gd" id="13_ka1xc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig7tw"]
 radius = 20.45
 height = 50.67
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u1ljd"]
-atlas = ExtResource("1_ig7tw")
-region = Rect2(0, 0, 50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3trg"]
+atlas = ExtResource("5_ka1xc")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jcost"]
-atlas = ExtResource("1_ig7tw")
-region = Rect2(50, 0, 50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5gnk"]
+atlas = ExtResource("5_ka1xc")
+region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yxphk"]
-atlas = ExtResource("1_ig7tw")
-region = Rect2(0, 50, 50, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptnbv"]
-atlas = ExtResource("1_ig7tw")
-region = Rect2(50, 50, 50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lel2m"]
+atlas = ExtResource("5_ka1xc")
+region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0jvq7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u1ljd")
+"texture": SubResource("AtlasTexture_e3trg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jcost")
+"texture": SubResource("AtlasTexture_a5gnk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yxphk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ptnbv")
+"texture": SubResource("AtlasTexture_lel2m")
 }],
 "loop": true,
 "name": &"idle",
@@ -100,7 +93,6 @@ position = Vector2(-0.20001219, 1.0000062)
 sprite_frames = SubResource("SpriteFrames_0jvq7")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.58340704
 
 [node name="PlayerCam" type="Camera2D" parent="Player/PlayerAnim"]
 zoom = Vector2(0.4, 0.4)
