@@ -3,8 +3,9 @@ extends CharacterBody2D
 @export var bullet_speed = 1500
 @export var offset_scale = 140
 @export var offset_rot = 270
-@export var max_health: int = 100
+@export var max_health: int = 0
 @export var damage_cooldown: float = 1.
+@export var dead: bool = false
 
 @onready var anim: AnimatedSprite2D = $PlayerAnim
 signal health_changed(current_health: int, max_health: int)
@@ -70,6 +71,7 @@ func take_damage(damage_amount: int):
 	get_tree().create_timer(damage_cooldown).timeout.connect(func(): can_take_damage = true)
 	
 	if current_health <= 0:
+		dead = true
 		die()
 
 func create_damage_effect():

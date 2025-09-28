@@ -6,9 +6,17 @@ extends Node2D
 
 var current_wave: int = 1
 var base_damage: int = 1
+var total_enemies_spawned: int = 0
+var enemies_killed: int = 0
 
 func _ready():
 	spawn_enemies()
+	# Connect to enemy deaths
+	get_tree().node_removed.connect(_on_node_removed)
+
+func _on_node_removed(node):
+	if node.is_in_group("enemies"):
+		enemies_killed += 1
 
 func _process(delta):
 	check_wave_complete()
@@ -37,7 +45,44 @@ func spawn_enemies_with_damage(damage: int):
 		e.damage_amount = damage
 		e.move_speed = enemy_speed
 		add_child(e)
+		total_enemies_spawned += 1
 
+func get_enemies_killed() -> int:
+	return enemies_killed
 
-func _on_restart_button_pressed() -> void:
-	pass # Replace with function body.
+func get_total_enemies_spawned() -> int:
+	return total_enemies_spawned
+
+func show_game_over():
+	var screen = $UI/GameOverScreen
+	if get_tree().paused:
+		get_tree().paused = false
+
+	# Reset all children to transparent
+	if screen.has_node("Background"):
+		screen.get_node("Background").modulate.a = 0.0
+	if screen.has_node("GameOverLabel"):
+		screen.get_node("GameOverLabel").modulate.a = 0.0
+	if screen.has_node("RestartButton"):
+		screen.get_node("RestartButton").modulate.a = 0.0
+	if screen.has_node("MainMenuButton"):
+		screen.get_node("MainMenuButton").modulate.a = 0.0
+	if screen.has_node("StatsLabel"):
+		screen.get_node("StatsLabel").modulate.a = 0.0
+
+	screen.visible = true
+	await get_tree().create_timer(0.02).timeout
+
+	# Parallel tween: each property animates independently
+	var tween = create_tween().set_parallel()
+
+	if screen.has_node("Background"):
+		tween.tween_property(screen.get_node("Background"), "modulate:a", 1.0, 0.4)
+	if screen.has_node("GameOverLabel"):
+		tween.tween_property(screen.get_node("GameOverLabel"), "modulate:a", 1.0, 0.4).set_delay(0.2)
+	if screen.has_node("RestartButton"):
+		tween.tween_property(screen.get_node("RestartButton"), "modulate:a", 1.0, 0.4).set_delay(0.4)
+	if screen.has_node("MainMenuButton"):
+		tween.tween_property(screen.get_node("MainMenuButton"), "modulate:a", 1.0, 0.4).set_delay(0.6)
+	if screen.has_node("StatsLabel"):
+		tween.tween_property(screen.get_node("StatsLabel"), "modulate:a", 1.0, 0.4).set_delay(0.8)
