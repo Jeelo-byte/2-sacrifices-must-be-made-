@@ -20,7 +20,6 @@ func _process(delta):
 		update_wave_display()
 
 func update_wave_display():
-	var enemies = get_tree().get_root().get_node("world").enemies_killed
-	print(enemies)
+	var enemies = get_tree().get_root().get_node("world").enemies_dead
 	var world = get_tree().get_root().get_node("world").current_wave
 	text = "YOU HAVE FOUGHT VALIANTLY, DOCTOR.\nWAVES SURVIVED: " + str(world - 1) + "\nENEMIES SLAIN: " + str(enemies)

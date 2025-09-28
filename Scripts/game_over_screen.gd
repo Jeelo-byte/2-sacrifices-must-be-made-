@@ -16,7 +16,7 @@ func show_game_over():
 	set_process_input(true)
 	get_tree().paused = true
 	
-	var main_node = get_node("../../Main") 
+	var main_node = get_node("Main") 
 	if main_node:
 		stats_label.text = "Final Wave: " + str(main_node.current_wave)
 	
