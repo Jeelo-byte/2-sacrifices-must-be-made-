@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://emts3i2ctj6k"]
+[gd_scene load_steps=25 format=3 uid="uid://emts3i2ctj6k"]
 
 [ext_resource type="Script" uid="uid://dnbpabuj0i8vq" path="res://Scripts/Player/player.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dswpc3013cm7v" path="res://Scripts/Player/main.gd" id="1_0y7xl"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bm0w005mbyok0" path="res://Scripts/stats_label.gd" id="10_7pouu"]
 [ext_resource type="Script" uid="uid://dyku0oifysyk" path="res://Scripts/background.gd" id="10_ka1xc"]
 [ext_resource type="TileSet" uid="uid://lu8xgeg0ji50" path="res://Sences/dungeon/TileSets/Floors.tres" id="11_nkrox"]
+[ext_resource type="Script" uid="uid://yf2ho2h0rjld" path="res://Scripts/polygon_2d.gd" id="12_xqqum"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig7tw"]
 radius = 20.45
@@ -183,6 +184,11 @@ theme_override_fonts/font = ExtResource("9_nkrox")
 theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1
 script = ExtResource("10_7pouu")
+
+[node name="Polygon2D" type="Polygon2D" parent="Player/PlayerAnim/PlayerCam/UI"]
+position = Vector2(565.00006, 308.99997)
+scale = Vector2(2.75, 2.75)
+script = ExtResource("12_xqqum")
 
 [node name="Light" type="PointLight2D" parent="Player"]
 visible = false
