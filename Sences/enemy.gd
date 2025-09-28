@@ -1,7 +1,11 @@
 extends CharacterBody2D
 
 @onready var player = get_parent().get_node("Player")
-var move_speed = 500
+@export var damage_amount: int = 1
+@export var attack_cooldown: float = 1.0
+
+var move_speed = 200
+var can_attack: bool = true
 
 func _ready():
 	add_to_group("enemies")
@@ -12,6 +16,11 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("bullets") or body.name.begins_with("Bullet"):
+	if body.is_in_group("bullets"):
 		queue_free()
 		body.queue_free()
+	elif body == player and can_attack:
+		player.take_damage(damage_amount)
+		can_attack = false
+		if get_tree():
+			get_tree().create_timer(attack_cooldown).timeout.connect(func(): can_attack = true)

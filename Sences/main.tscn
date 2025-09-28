@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://emts3i2ctj6k"]
+[gd_scene load_steps=14 format=3 uid="uid://emts3i2ctj6k"]
 
 [ext_resource type="Script" uid="uid://dnbpabuj0i8vq" path="res://Scripts/Player/player.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dswpc3013cm7v" path="res://Scripts/Player/main.gd" id="1_0y7xl"]
 [ext_resource type="Texture2D" uid="uid://ckbpbhjmrecvw" path="res://Spirtes/Player/github-octopuss.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dhxq4w6n0sj2s" path="res://Sences/bullet.tscn" id="2_ri208"]
 [ext_resource type="PackedScene" uid="uid://cbodbww3t36n6" path="res://Sences/enemy.tscn" id="4_ipa3v"]
+[ext_resource type="Script" uid="uid://8ekh8vnqvft8" path="res://Scripts/label.gd" id="6_5pjkp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig7tw"]
 radius = 20.45
@@ -82,5 +83,17 @@ position = Vector2(30.400002, 56.199997)
 position = Vector2(-0.5, -0.79999924)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_0y7xl")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("6_5pjkp")
 
 [connection signal="body_entered" from="Enemy/EnemyArea" to="Enemy" method="_on_enemy_area_body_entered"]
