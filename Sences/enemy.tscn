@@ -1,20 +1,41 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbodbww3t36n6"]
+[gd_scene load_steps=10 format=3 uid="uid://cbodbww3t36n6"]
 
 [ext_resource type="Script" uid="uid://bqufx1vsy3yvu" path="res://Sences/enemy.gd" id="1_40gjv"]
-[ext_resource type="Texture2D" uid="uid://bgasocjkdrvx0" path="res://Spirtes/Player/enemy.png" id="2_88ngu"]
+[ext_resource type="Texture2D" uid="uid://5pkqdmxgntsd" path="res://Game Resources/GameJamFinal/CrabMob/spritesheet.png" id="2_40gjv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pjkp"]
-size = Vector2(22.2, 28.9)
+size = Vector2(64.000015, 45.000008)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0y7xl"]
-atlas = ExtResource("2_88ngu")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_88ngu"]
+atlas = ExtResource("2_40gjv")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usc6u"]
+atlas = ExtResource("2_40gjv")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp517"]
+atlas = ExtResource("2_40gjv")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_462ra"]
+atlas = ExtResource("2_40gjv")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ri208"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0y7xl")
+"texture": SubResource("AtlasTexture_88ngu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usc6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp517")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_462ra")
 }],
 "loop": true,
 "name": &"enemy",
@@ -22,13 +43,14 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0y7xl"]
-size = Vector2(25.400002, 32.200005)
+size = Vector2(66.00001, 50.000008)
 
 [node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_40gjv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -0.95000076)
+position = Vector2(-3.999998, 12.5)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_5pjkp")
 
@@ -37,11 +59,12 @@ texture_filter = 1
 position = Vector2(0.6000023, 0.60000134)
 sprite_frames = SubResource("SpriteFrames_ri208")
 animation = &"enemy"
+autoplay = "enemy"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.29999924, -1.0999985)
+position = Vector2(-3.999999, 12.999999)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_0y7xl")
 

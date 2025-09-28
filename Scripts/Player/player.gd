@@ -81,11 +81,13 @@ func _physics_process(delta):
 
 func fire():
 	var bullet_instance = bullet.instantiate()
-	bullet_instance.global_position = anim.global_position + offset_scale * Vector2(cos(rotation + deg_to_rad(offset_rot + 180)), sin(rotation + deg_to_rad(offset_rot + 180)))
+	var fire_direction = Vector2(cos(rotation + deg_to_rad(offset_rot + 180)), sin(rotation + deg_to_rad(offset_rot + 180)))
+	bullet_instance.global_position = anim.global_position + offset_scale * fire_direction
 	bullet_instance.rotation = rotation + deg_to_rad(offset_rot)
-	bullet_instance.apply_impulse(Vector2(bullet_speed, 0).rotated(rotation + deg_to_rad(offset_rot + 180)))
 	get_tree().get_root().add_child(bullet_instance)
-
+	bullet_instance.linear_velocity = fire_direction * bullet_speed
+	
+	
 func take_damage(damage_amount: int):
 	if not can_take_damage:
 		return
