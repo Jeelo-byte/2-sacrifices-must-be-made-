@@ -46,8 +46,8 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0xm2m"]
-radius = 27.5
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y7xl"]
+size = Vector2(22.199997, 29.199997)
 
 [node name="world" type="Node2D"]
 scale = Vector2(5, 5)
@@ -60,20 +60,26 @@ up_direction = Vector2(0.99999446, -0.003333315)
 script = ExtResource("1_0xm2m")
 bullet = ExtResource("2_ri208")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="PlayerColl" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CapsuleShape2D_ig7tw")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+[node name="PlayerAnim" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(-0.20001219, 1.0000062)
 sprite_frames = SubResource("SpriteFrames_0jvq7")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.58340704
 
-[node name="Area2D" type="Area2D" parent="Player"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
-shape = SubResource("CircleShape2D_0xm2m")
+[node name="PlayerCam" type="Camera2D" parent="Player/PlayerAnim"]
 
 [node name="Enemy" parent="." instance=ExtResource("4_ipa3v")]
 position = Vector2(30.400002, 56.199997)
+
+[node name="EnemyArea" type="Area2D" parent="Enemy"]
+
+[node name="EnemyColl" type="CollisionShape2D" parent="Enemy/EnemyArea"]
+position = Vector2(-0.5, -0.79999924)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_0y7xl")
+
+[connection signal="body_entered" from="Enemy/EnemyArea" to="Enemy" method="_on_enemy_area_body_entered"]

@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var offset_scale = 140
 @export var offset_rot = 270
 
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim: AnimatedSprite2D = $PlayerAnim
 
 var movespeed = 500
 
@@ -45,11 +45,7 @@ func fire():
 func kill():
 	get_tree().reload_current_scene()
 
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if "Enemy" in body.name:
+	if body is CharacterBody2D:
+		body.queue_free()
 		kill()
-
-
-func _on_Area2D_body_entered(body):
-	pass
