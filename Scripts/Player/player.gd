@@ -1,14 +1,15 @@
 extends CharacterBody2D
+
 @export var bullet: PackedScene
 @export var bullet_speed = 1500
 @export var offset_scale = 140
 @export var offset_rot = 270
-@export var max_health: int = 0
-@export var damage_cooldown: float = 1.
-@export var dead: bool = false
+@export var max_health: int = 10
+@export var damage_cooldown: float = 1.0
 
 @onready var anim: AnimatedSprite2D = $PlayerAnim
 signal health_changed(current_health: int, max_health: int)
+
 var movespeed = 500
 var current_health: int
 var can_take_damage: bool = true
@@ -24,24 +25,23 @@ func emit_initial_health():
 
 func _physics_process(delta):
 	var direction = Vector2()
-	
-	if Input.is_action_pressed("up"):
-		direction.y -= 1
-	if Input.is_action_pressed("down"):
-		direction.y += 1
-	if Input.is_action_pressed("left"):
-		direction.x -= 1
-	if Input.is_action_pressed("right"):
-		direction.x += 1
-	
-	if Input.is_action_just_pressed("LMB"):
-		fire()
-	
+	if current_health != 0:
+		if Input.is_action_pressed("up"):
+			direction.y -= 1
+		if Input.is_action_pressed("down"):
+			direction.y += 1
+		if Input.is_action_pressed("left"):
+			direction.x -= 1
+		if Input.is_action_pressed("right"):
+			direction.x += 1
+		if Input.is_action_just_pressed("LMB"):
+			fire()
+
 	if direction != Vector2.ZERO:
 		velocity = direction.normalized() * movespeed
 	else:
 		velocity = Vector2.ZERO
-		
+
 	move_and_slide()
 	look_at((get_global_mouse_position() - anim.global_position).rotated(deg_to_rad(offset_rot)) + anim.global_position)
 
@@ -52,27 +52,15 @@ func fire():
 	bullet_instance.apply_impulse(Vector2(bullet_speed, 0).rotated(rotation + deg_to_rad(offset_rot + 180)))
 	get_tree().get_root().add_child(bullet_instance)
 
-func check_wave_complete():
-	var enemies = get_tree().get_nodes_in_group("enemies")
-	if enemies.size() == 0:
-		var movespeed = ceil(1.4 * movespeed)
-
 func take_damage(damage_amount: int):
 	if not can_take_damage:
 		return
-	
-	current_health -= damage_amount
-	current_health = max(0, current_health)
-	
+
+	current_health = max(current_health - damage_amount, 0)
 	health_changed.emit(current_health, max_health)
 	create_damage_effect()
-	
 	can_take_damage = false
 	get_tree().create_timer(damage_cooldown).timeout.connect(func(): can_take_damage = true)
-	
-	if current_health <= 0:
-		dead = true
-		die()
 
 func create_damage_effect():
 	var tween = create_tween()
@@ -81,8 +69,7 @@ func create_damage_effect():
 	tween.tween_property(anim, "modulate", Color.WHITE, 0.1)
 
 func die():
+	current_health = 0
 	var game_over_screen = get_node("../UI/GameOverScreen")
 	if game_over_screen:
 		game_over_screen.show_game_over()
-	else:
-		get_tree().reload_current_scene()

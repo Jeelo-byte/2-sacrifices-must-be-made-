@@ -105,6 +105,8 @@ scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_0y7xl")
 
 [node name="UI" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 1.5
 
 [node name="HPLabel" type="Label" parent="UI"]
 offset_right = 40.0
@@ -127,46 +129,51 @@ script = ExtResource("8_7pouu")
 modulate = Color(1, 1, 1, 0)
 z_index = 6
 layout_mode = 0
-offset_top = 192.0
-offset_right = 1152.0
-offset_bottom = 323.0
+offset_left = -876.0
+offset_top = -79.0
+offset_right = 2004.0
+offset_bottom = 332.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("9_nkrox")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 100
 text = "GAME OVER!"
 horizontal_alignment = 1
 
 [node name="Background" type="ColorRect" parent="UI/GameOverScreen"]
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = -876.0
+offset_top = -496.0
+offset_right = 2004.0
+offset_bottom = 1124.0
 color = Color(1, 0, 0, 0.39215687)
 
 [node name="RestartButton" type="Button" parent="UI/GameOverScreen"]
 layout_mode = 0
-offset_left = 238.0
-offset_top = 383.0
-offset_right = 884.0
-offset_bottom = 456.0
+offset_left = -470.0
+offset_top = 424.0
+offset_right = 1600.0
+offset_bottom = 627.0
 theme_override_fonts/font = ExtResource("9_nkrox")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 72
 text = "RESTART"
 
 [node name="MainMenuButton" type="Button" parent="UI/GameOverScreen"]
 layout_mode = 0
-offset_left = 238.0
-offset_top = 468.0
-offset_right = 884.0
-offset_bottom = 541.0
+offset_left = -470.0
+offset_top = 658.0
+offset_right = 1600.0
+offset_bottom = 861.0
 theme_override_fonts/font = ExtResource("9_nkrox")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 72
 text = "MAIN MENU"
 
 [node name="StatsLabel" type="Label" parent="UI/GameOverScreen"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_top = 274.0
-offset_right = 1152.0
-offset_bottom = 349.0
+offset_left = -876.0
+offset_top = 127.0
+offset_right = 2004.0
+offset_bottom = 296.0
 theme_override_fonts/font = ExtResource("9_nkrox")
 theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1
