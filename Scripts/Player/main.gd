@@ -66,13 +66,13 @@ func show_game_over():
 	if screen.has_node("Background"):
 		tween.tween_property(screen.get_node("Background"), "modulate:a", 1.0, 0.4)
 	if screen.has_node("GameOverLabel"):
-		tween.tween_property(screen.get_node("GameOverLabel"), "modulate:a", 1.0, 0.4).set_delay(0.2)
+		tween.tween_property(screen.get_node("GameOverLabel"), "modulate:a", 1.0, 0.4).set_delay(0.15)
 	if screen.has_node("StatsLabel"):
-		tween.tween_property(screen.get_node("StatsLabel"), "modulate:a", 1.0, 0.4).set_delay(0.4)
+		tween.tween_property(screen.get_node("StatsLabel"), "modulate:a", 1.0, 0.4).set_delay(0.3)
 	if screen.has_node("RestartButton"):
-		tween.tween_property(screen.get_node("RestartButton"), "modulate:a", 1.0, 0.4).set_delay(0.6)
+		tween.tween_property(screen.get_node("RestartButton"), "modulate:a", 1.0, 0.4).set_delay(0.45)
 	if screen.has_node("MainMenuButton"):
-		tween.tween_property(screen.get_node("MainMenuButton"), "modulate:a", 1.0, 0.4).set_delay(0.8)
+		tween.tween_property(screen.get_node("MainMenuButton"), "modulate:a", 1.0, 0.4).set_delay(0.6)
 
 func _on_restart_button_pressed():
 	get_tree().reload_current_scene()
