@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://emts3i2ctj6k"]
+[gd_scene load_steps=13 format=3 uid="uid://emts3i2ctj6k"]
 
 [ext_resource type="Script" uid="uid://dnbpabuj0i8vq" path="res://Scripts/Player/player.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dswpc3013cm7v" path="res://Scripts/Player/main.gd" id="1_0y7xl"]
 [ext_resource type="Texture2D" uid="uid://ckbpbhjmrecvw" path="res://Spirtes/Player/github-octopuss.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dhxq4w6n0sj2s" path="res://Sences/bullet.tscn" id="2_ri208"]
 [ext_resource type="PackedScene" uid="uid://cbodbww3t36n6" path="res://Sences/enemy.tscn" id="4_ipa3v"]
@@ -50,6 +51,8 @@ radius = 27.5
 
 [node name="world" type="Node2D"]
 scale = Vector2(5, 5)
+script = ExtResource("1_0y7xl")
+enemy_scene = ExtResource("4_ipa3v")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(113.00001, 61.799995)
