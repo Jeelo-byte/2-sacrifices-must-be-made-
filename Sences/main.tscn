@@ -100,14 +100,12 @@ frame_progress = 0.58340704
 zoom = Vector2(0.4, 0.4)
 
 [node name="Light" type="PointLight2D" parent="Player"]
-visible = false
 scale = Vector2(4.39, 4.39)
 energy = 2.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_2afmd")
 
 [node name="Darken" type="PointLight2D" parent="Player"]
-visible = false
 scale = Vector2(10.48, 10.48)
 color = Color(0.39308554, 0.39308554, 0.39308533, 1)
 energy = 3.66

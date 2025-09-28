@@ -36,14 +36,14 @@ func _physics_process(delta):
 			direction.x += 1
 		if Input.is_action_just_pressed("LMB"):
 			fire()
+		
+		if direction != Vector2.ZERO:
+			velocity = direction.normalized() * movespeed
+		else:
+			velocity = Vector2.ZERO
 
-	if direction != Vector2.ZERO:
-		velocity = direction.normalized() * movespeed
-	else:
-		velocity = Vector2.ZERO
-
-	move_and_slide()
-	look_at((get_global_mouse_position() - anim.global_position).rotated(deg_to_rad(offset_rot)) + anim.global_position)
+		move_and_slide()
+		look_at((get_global_mouse_position() - anim.global_position).rotated(deg_to_rad(offset_rot)) + anim.global_position)
 
 func fire():
 	var bullet_instance = bullet.instantiate()
